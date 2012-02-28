@@ -23,3 +23,13 @@ def rps_game_winner(game)
 	winner = v1 == v2 ? 0 : ((v1 - v2) % 3 - 1)
 	game[winner]
 end
+
+def rps_tournament_winner(tour)
+  if tour[0][0].instance_of? Array
+    w1 = rps_tournament_winner(tour[0])
+    w2 = rps_tournament_winner(tour[1])
+    rps_game_winner([w1, w2])
+  else
+    rps_game_winner(tour)
+  end
+end

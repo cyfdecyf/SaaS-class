@@ -38,3 +38,39 @@ describe 'rps_game_winner' do
 		lambda { rps_game_winner(game) }.should raise_error(NoSuchStrategyError)
 	end
 end
+
+describe 'rps_tournament' do
+	it 'return the winner of a tournament' do
+		tour =
+		[ # Dave R
+			[ # Dave R
+				[ ["Armando", "P"], ["Dave", "S"] ], # Dave S
+				[ ["Richard", "R"], ["Michael", "S"] ], # Richard R
+			],
+			[ # Allen S
+				[ ["Allen", "S"], ["Omer", "P"] ], # Allen S
+				[ ["David E.", "R"], ["Richard X.", "P"] ] # Richard X. P
+			]
+		]
+		rps_tournament_winner(tour).should == ["Richard", "R"]
+
+		tour =
+		[ # A P
+			[ # A P
+				[ # Dave R
+					[ ["Armando", "P"], ["Dave", "S"] ],
+					[ ["Richard", "R"], ["Michael", "S"] ],
+				],
+				[ # A P
+					[ ["A", "P"], ["B", "p"] ], # A P
+					[ ["C", "R"], ["D", "S"] ], # C R
+				]
+			],
+			[ # Allen p
+				[ ["Allen", "p"], ["Omer", "P"] ], # p
+				[ ["David E.", "R"], ["Richard X.", "P"] ] # P
+			]
+		]
+		rps_tournament_winner(tour).should == ["A", "P"]
+	end
+end
