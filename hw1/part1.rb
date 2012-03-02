@@ -4,10 +4,9 @@ def palindrome?(s)
 end
 
 def count_words(s)
-	res = {}
-	res.default = 0
-	s.downcase.gsub(/\w*\b/) do |pat|
-		res[pat] += 1 if pat != ''
+	res = Hash.new(0)
+	s.downcase.scan(/\b\w+\b/) do |pat|
+		res[pat] += 1
 	end
 	res
 end

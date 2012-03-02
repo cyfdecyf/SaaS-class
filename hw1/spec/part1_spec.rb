@@ -22,6 +22,9 @@ describe 'count_words' do
 		cnt.should == {'doo' => 3, 'bee' => 2}
 
 		cnt = count_words("A man, a plan, a canal -- Panama")
-		cnt.should == {'a' => 3, 'man' => 1, 'canal' => 1, 'panama' => 1, 'plan' => 1} 
+		cnt.should == {'a' => 3, 'man' => 1, 'canal' => 1, 'panama' => 1, 'plan' => 1}
+
+		cnt = count_words("A man, , a plan, a canal -- Panama! , .")
+		cnt.should == {'a' => 3, 'man' => 1, 'canal' => 1, 'panama' => 1, 'plan' => 1}
 	end
 end
